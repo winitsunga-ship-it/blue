@@ -107,28 +107,36 @@ body {
 
 /* FLOATING BLUE HEARTS */
 .heart {
-  position: fixed;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed !important;
+  bottom: -40px !important;
+  left: 0 !important;
+
+  display: block !important;
+  width: auto;
+  height: auto;
+
   font-size: 20px;
   color: #4fa3ff;
+
   pointer-events: none;
-  animation: floatUp 5s ease-in forwards;
-  z-index: 9999;
+  z-index: 999999;
+
+  animation: floatUp 5s linear forwards;
 }
 
 @keyframes floatUp {
-  0% {
-    transform: translateX(-50%) translateY(0) scale(1);
+  from {
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
-  100% {
-    transform: translateX(-50%) translateY(-120vh) scale(1.6);
+  to {
+    transform: translateY(-120vh) scale(1.6);
     opacity: 0;
   }
 }
 
+
 }
+
 
 
