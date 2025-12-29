@@ -16,18 +16,19 @@ openBtn.addEventListener("click", () => {
     music.play().catch(() => {});
   }
 
-  // Create blue hearts
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.textContent = "💙";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = 16 + Math.random() * 20 + "px";
+ // Floating blue hearts
+const heartInterval = setInterval(() => {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.textContent = "💙";
 
-    document.body.appendChild(heart);
+  // Random horizontal position
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = 14 + Math.random() * 18 + "px";
 
-    setTimeout(() => {
-      heart.remove();
-    }, 4000);
-  }, 300);
-});
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 5000);
+}, 500);
