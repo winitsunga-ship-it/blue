@@ -73,11 +73,12 @@ body {
   background: white;
   border-radius: 10px;
   overflow-y: auto;
-  transition: height 0.9s ease;
+  transition: height 0.9s ease, transform 0.9s ease;
 }
 
 #envelope.open #paper {
   height: 300px;
+  transform: translateY(-40px);
 }
 
 /* HEARTS */
@@ -134,3 +135,4 @@ body {
     margin: 0;
   }
 }
+
