@@ -1,0 +1,59 @@
+const message = `
+To my dearest, Adrian
+
+Happy New Year my Yayang!!
+
+I’m still astonished at our closeness even now. Little me a few months ago would never have imagined that I would now be greeting you with a Happy New Year casually. I’m writing this letter to you, so that I may reciprocate your letter last Christmas.
+
+Firstly, thank you so much for your words! I was flabbergasted and unprepared, so I wasn’t even able to reply to your message right. Just know that I appreciated your message for me. I’ve read it over and over again, so much so that I still feel moved by it.
+
+And with that, I would like you to know how much you mean to me. We may not have known each other for long, but it feels like I’ve known you my whole life. I can’t imagine how my life would have been now if I hadn’t messaged you that one evening.
+
+You have made such an impact through my daily life, which led to you becoming so dear to me. Thank you for being there for me during my lonely times. I cherished every moment we spent together, even through the phone, or even the moments where we simply acknowledged each other’s presence without any words to say.
+
+For this new year, I wish to keep this bond we have longer, for us to grow our connection. I wish for both of us to thrive and reach our goals, to achieve greater things in life. May both of us be blessed by the Lord as we embark on our journey for our upcoming years.
+
+There are still so many things that I wish to say, but this will all be it for now. I hope you understand how much I appreciate you, Yayang.
+
+Thank you for entering my life.
+
+- Yours truly,
+Wyn
+`;
+
+const output = document.getElementById("output");
+const button = document.getElementById("animateBtn");
+const iframe = document.getElementById("musicPlayer");
+
+let started = false;
+
+button.onclick = () => {
+  if (started) return;
+  started = true;
+
+  button.style.display = "none";
+  output.textContent = "";
+
+  // Start music (user interaction allows autoplay)
+  iframe.src += "&autoplay=1&loop=1&playlist=y-nxQMx_38s";
+
+  let i = 0;
+  const typingSpeed = 38; // emotional pacing
+
+  const typing = setInterval(() => {
+    output.textContent += message[i];
+    spawnHeart();
+    i++;
+    if (i >= message.length) clearInterval(typing);
+  }, typingSpeed);
+};
+
+function spawnHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = "💙";
+  heart.style.left = Math.random() * 90 + "%";
+  output.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 2000);
+}
