@@ -1,63 +1,70 @@
+// ================================
+// ✉️ LETTER MESSAGE (EDIT THIS)
+// ================================
 const message = `
-To my dearest, Adrian
+To my dearest, Adrian,
 
-Happy New Year my Yayang!!
+Happy New Year, my Yayang 💙
 
-I’m still astonished at our closeness even now. Little me a few months ago would never have imagined that I would now be greeting you with a Happy New Year casually. I’m writing this letter to you, so that I may reciprocate your letter last Christmas.
+I still can’t believe how close we’ve become,
+how naturally you became someone important to me.
+There are moments when I catch myself smiling
+just because I thought of you.
 
-Firstly, thank you so much for your words! I was flabbergasted and unprepared, so I wasn’t even able to reply to your message right. Just know that I appreciated your message for me. I’ve read it over and over again, so much so that I still feel moved by it.
+You make ordinary days feel lighter,
+and quiet moments feel warm.
+If this letter could reach your hands,
+I hope it carries even a fraction
+of what I feel in my heart.
 
-And with that, I would like you to know how much you mean to me. We may not have known each other for long, but it feels like I’ve known you my whole life. I can’t imagine how my life would have been now if I hadn’t messaged you that one evening.
-
-You have made such an impact through my daily life, which led to you becoming so dear to me. Thank you for being there for me during my lonely times. I cherished every moment we spent together, even through the phone, or even the moments where we simply acknowledged each other’s presence without any words to say.
-
-For this new year, I wish to keep this bond we have longer, for us to grow our connection. I wish for both of us to thrive and reach our goals, to achieve greater things in life. May both of us be blessed by the Lord as we embark on our journey for our upcoming years.
-
-There are still so many things that I wish to say, but this will all be it for now. I hope you understand how much I appreciate you, Yayang.
-
-Thank you for entering my life.
-
-- Yours truly,
-Wyn
+Always,
+— Me
 `;
 
+
+// ================================
+// 🔗 ELEMENT REFERENCES
+// ================================
+const envelope = document.getElementById("envelope");
 const output = document.getElementById("output");
-const button = document.getElementById("animateBtn");
 const iframe = document.getElementById("musicPlayer");
 const heartsLayer = document.getElementById("hearts");
 
-let started = false;
-let heartInterval;
+let hasOpened = false;
 
-button.onclick = () => {
-  if (started) return;
-  started = true;
 
-  // hide button
-  button.style.display = "none";
+// ================================
+// 📩 OPEN LETTER EVENT
+// ================================
+envelope.addEventListener("click", () => {
+  if (hasOpened) return;
+  hasOpened = true;
 
-  // start music
+  // Open envelope animation
+  envelope.classList.add("open");
+
+  // Start music (autoplay allowed because user clicked)
   iframe.src += "&autoplay=1&loop=1&playlist=y-nxQMx_38s";
 
-  // start floating hearts
-  heartInterval = setInterval(spawnHeart, 700);
+  // Floating hearts
+  setInterval(createHeart, 700);
 
-  // type letter
-  output.textContent = "";
-  let i = 0;
-  const typingSpeed = 38;
-
-  const typing = setInterval(() => {
-    output.textContent += message[i];
-    i++;
-    if (i >= message.length) {
-      clearInterval(typing);
-      clearInterval(heartInterval); // stop hearts after letter ends (optional)
+  // Typing effect
+  let index = 0;
+  const typingInterval = setInterval(() => {
+    output.textContent += message[index];
+    index++;
+    if (index >= message.length) {
+      clearInterval(typingInterval);
     }
-  }, typingSpeed);
-};
+  }, 38);
+});
 
-function spawnHeart() {
+
+// ================================
+// 💙 HEART ANIMATION
+// ================================
+function createHeart() {
   const heart = document.createElement("div");
   heart.className = "heart";
   heart.textContent = "💙";
@@ -67,5 +74,7 @@ function spawnHeart() {
 
   heartsLayer.appendChild(heart);
 
-  setTimeout(() => heart.remove(), 2500);
+  setTimeout(() => {
+    heart.remove();
+  }, 2500);
 }
