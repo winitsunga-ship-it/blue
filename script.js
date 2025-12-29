@@ -1,8 +1,10 @@
 const openBtn = document.getElementById("openBtn");
 const envelope = document.getElementById("envelope");
 const music = document.getElementById("bg-music");
+const muteBtn = document.getElementById("muteBtn");
 
 let opened = false;
+let isMuted = false;
 
 openBtn.addEventListener("click", () => {
   if (opened) return;
@@ -63,4 +65,15 @@ openBtn.addEventListener("click", () => {
 
     detectBeat();
   }
+  muteBtn.addEventListener("click", () => {
+  if (!music) return;
+
+  isMuted = !isMuted;
+  music.muted = isMuted;
+
+  muteBtn.textContent = isMuted ? "💙🔇" : "💙🔊";
+  muteBtn.classList.toggle("muted", isMuted);
 });
+
+});
+
