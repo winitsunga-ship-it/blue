@@ -22,13 +22,31 @@ body {
 /* OPEN BUTTON */
 #openBtn {
   padding: 14px 26px;
-  margin-bottom: 36px;
+  margin-bottom: 24px;
   border: none;
   border-radius: 30px;
   background: linear-gradient(135deg, #4fa3ff, #6bb6ff);
   color: white;
+  font-size: 15px;
   cursor: pointer;
   box-shadow: 0 6px 16px rgba(79,163,255,0.35);
+}
+
+/* MUTE BUTTON */
+#muteBtn {
+  margin-bottom: 24px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 999px;
+  font-size: 22px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 8px 20px rgba(79,163,255,0.25);
+  transition: transform 0.2s ease;
+}
+
+#muteBtn.beat {
+  transform: scale(1.15);
 }
 
 /* ENVELOPE */
@@ -40,10 +58,6 @@ body {
   position: relative;
   overflow: hidden;
   box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-  transition: box-shadow 0.15s ease;
-  perspective: 1000px;
-}
-
 }
 
 #envelope.beat {
@@ -57,15 +71,10 @@ body {
   width: 100%;
   height: 50%;
   background: #7bbcff;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  clip-path: polygon(0 0,100% 0,50% 100%);
   transform-origin: top;
   transition: transform 0.8s ease;
   z-index: 3;
-  backface-visibility: hidden;
-}
-
-#envelope.open #flap {
-  transform: rotateX(180deg);
 }
 
 /* PAPER */
@@ -78,22 +87,36 @@ body {
   background: white;
   border-radius: 10px;
   overflow-y: auto;
-  transition: height 0.9s ease, transform 0.9s ease;
+  transition: height 0.9s ease;
+  z-index: 2;
+}
+
+/* LETTER */
+#letter {
+  padding: 22px;
+  font-family: 'Homemade Apple', cursive;
+  font-size: 15px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+/* OPEN STATE */
+#envelope.open #flap {
+  transform: rotateX(180deg);
 }
 
 #envelope.open #paper {
   height: 300px;
-  transform: translateY(-40px);
 }
 
-/* HEARTS */
+/* FLOATING HEARTS */
 .heart {
   position: fixed;
   bottom: -40px;
   font-size: 20px;
   color: #4fa3ff;
-  animation: floatUp 5s linear forwards;
   pointer-events: none;
+  animation: floatUp 5s linear forwards;
 }
 
 .heart.beat {
@@ -105,40 +128,15 @@ body {
   to { transform: translateY(-120vh); opacity: 0; }
 }
 
-/* MUTE BUTTON */
-#muteBtn {
-  margin-bottom: 28px;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 999px;
-  font-size: 22px;
-  background: rgba(255,255,255,0.85);
-  color: #4fa3ff;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(79,163,255,0.25);
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-#muteBtn.beat {
-  transform: scale(1.15);
-}
-
-#muteBtn.switching {
-  opacity: 0;
-}
-
-#muteBtn.muted {
-  opacity: 0.5;
-}
-
 /* MOBILE */
 @media (max-width: 420px) {
+  #envelope {
+    width: 90vw;
+  }
+
   #muteBtn {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    margin: 0;
   }
 }
-
-
