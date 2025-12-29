@@ -172,7 +172,19 @@ body {
     opacity: 0;
   }
 }
+/* HEART PULSE TO MUSIC */
+.heart.pulse {
+  animation: heartPulse 0.8s ease-in-out infinite,
+             floatUp 5s linear forwards;
+}
+
+@keyframes heartPulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
 
 
 }
+
 
