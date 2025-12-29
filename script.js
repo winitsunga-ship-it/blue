@@ -1,6 +1,4 @@
-// ================================
-// ✉️ LETTER MESSAGE (EDIT THIS)
-// ================================
+
 const message = `
 To my dearest, Adrian,
 
@@ -22,9 +20,6 @@ Always,
 `;
 
 
-// ================================
-// 🔗 ELEMENT REFERENCES
-// ================================
 const envelope = document.getElementById("envelope");
 const output = document.getElementById("output");
 const iframe = document.getElementById("musicPlayer");
@@ -32,10 +27,6 @@ const heartsLayer = document.getElementById("hearts");
 
 let hasOpened = false;
 
-
-// ================================
-// 📩 OPEN LETTER EVENT
-// ================================
 envelope.addEventListener("click", () => {
   if (hasOpened) return;
   hasOpened = true;
@@ -78,3 +69,4 @@ function createHeart() {
     heart.remove();
   }, 2500);
 }
+
