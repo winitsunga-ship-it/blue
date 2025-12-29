@@ -13,7 +13,7 @@ openBtn.addEventListener("click", () => {
   // 1️⃣ Open envelope
   envelope.classList.add("open");
 
-  // 2️⃣ Play music (user interaction)
+  // 2️⃣ Play music
   if (music) {
     music.volume = 0;
     music.play().catch(() => {});
@@ -29,7 +29,7 @@ openBtn.addEventListener("click", () => {
       music.volume = volume;
     }, 100);
 
-    // ===== BEAT SYNC SETUP (PUT IT RIGHT HERE) =====
+    // ===== BEAT SYNC SETUP =====
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     const audioCtx = new AudioContext();
     const source = audioCtx.createMediaElementSource(music);
@@ -44,7 +44,7 @@ openBtn.addEventListener("click", () => {
 
     function detectBeat() {
       analyser.getByteFrequencyData(dataArray);
-S
+
       let bass = 0;
       for (let i = 0; i < 10; i++) {
         bass += dataArray[i];
@@ -57,7 +57,6 @@ S
         muteBtn.classList.add("beat");
         setTimeout(() => muteBtn.classList.remove("beat"), 120);
 
-
         document.querySelectorAll(".heart").forEach(h => {
           h.classList.add("beat");
           setTimeout(() => h.classList.remove("beat"), 120);
@@ -69,6 +68,9 @@ S
 
     detectBeat();
   }
+});
+
+// ===== MUTE BUTTON (OUTSIDE OPEN CLICK) =====
 muteBtn.addEventListener("click", () => {
   if (!music) return;
 
@@ -84,6 +86,3 @@ muteBtn.addEventListener("click", () => {
     muteBtn.classList.remove("switching");
   }, 150);
 });
-
-
-
