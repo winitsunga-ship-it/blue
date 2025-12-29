@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(#e6f2ff, #cce4ff);
   display: flex;
   justify-content: center;
@@ -17,77 +17,66 @@ body {
   text-align: center;
 }
 
+/* BUTTON */
+.open-btn {
+  margin-bottom: 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  background: #4fa3ff;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
 /* ENVELOPE */
-#envelope {
+.envelope {
   width: 320px;
   height: 220px;
   position: relative;
-  cursor: pointer;
-  perspective: 1000px;
 }
 
-/* PARTS */
-.back {
-  background: #3a8dde;
+/* BACK */
+.envelope-back {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  background: #4fa3ff;
   border-radius: 8px;
   z-index: 1;
 }
 
-.front {
-  background: #4fa3ff;
+/* FRONT */
+.envelope-front {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  background: #6bb6ff;
   border-radius: 8px;
   z-index: 3;
 }
 
-.top {
+/* LETTER */
+.letter {
   position: absolute;
-  width: 100%;
-  height: 50%;
-  background: #6bb6ff;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  transform-origin: top;
-  transition: transform 1s;
-  z-index: 4;
-}
-
-/* PAPER */
-.paper {
-  position: absolute;
+  left: 5%;
+  bottom: 10px;
   width: 90%;
   height: 0;
   background: white;
-  left: 5%;
-  bottom: 5%;
   border-radius: 6px;
   overflow-y: auto;
-  transition: height 1s;
+  padding: 15px;
   z-index: 2;
-}
-
-.letter {
-  padding: 20px;
-  font-size: 14px;
-  line-height: 1.6;
+  transition: height 1s ease;
 }
 
 /* OPEN STATE */
-#envelope.open .top {
-  transform: rotateX(180deg);
-}
-
-#envelope.open .paper {
-  height: 280px;
+.envelope.open .letter {
+  height: 260px;
 }
 
 /* TEXT */
-.tap {
-  margin-top: 20px;
-  color: #2c5fa8;
+.letter p {
   font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
 }
