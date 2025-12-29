@@ -18,23 +18,19 @@ openBtn.addEventListener("click", () => {
   }
 
   // FLOATING BLUE HEARTS
-  const heartInterval = setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.textContent = "💙";
+const heartInterval = setInterval(() => {
+  const heart = document.createElement("span");
+  heart.className = "heart";
+  heart.innerText = "💙";
 
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = 14 + Math.random() * 18 + "px";
+  heart.style.left = Math.random() * window.innerWidth + "px";
 
-    document.body.appendChild(heart);
+  document.body.appendChild(heart);
 
-    setTimeout(() => {
-      heart.remove();
-    }, 5000);
-  }, 500);
-
-  // STOP HEARTS AFTER 15 SECONDS
   setTimeout(() => {
-    clearInterval(heartInterval);
-  }, 15000);
+    heart.remove();
+  }, 5000);
+}, 500);
+
 });
+
