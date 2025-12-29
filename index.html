@@ -3,48 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For You 💙</title>
-
-  <!-- CSS -->
+  <title>Letter</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- BACKGROUND MUSIC -->
-  <!-- Replace music.mp3 with your actual file if different -->
-  <audio id="bg-music" src="music.mp3" preload="auto"></audio>
+<audio id="bg-music" src="music.mp3"></audio>
 
-  <!-- ENVELOPE CONTAINER -->
-  <div class="container">
+<div class="wrapper">
+  <button id="openBtn">Open Letter 💌</button>
 
-    <!-- OPEN BUTTON -->
-    <button class="open-btn">Open Letter 💌</button>
-
-    <!-- ENVELOPE -->
-    <div class="envelope">
-      <div class="envelope-back"></div>
-
-      <div class="letter">
-        <p>
+  <div id="envelope">
+    <div id="flap"></div>
+    <div id="paper">
+      <pre id="letter">
 To my dearest,
 
-This is where your message goes.
-You can make it as long as you want.
-It will scroll on mobile and desktop.
+This finally works.
+You can breathe now.
 
-Write everything you want to say here.
-
-— From me
-        </p>
-      </div>
-
-      <div class="envelope-front"></div>
+— Me
+      </pre>
     </div>
-
   </div>
+</div>
 
-  <!-- JAVASCRIPT -->
-  <script src="script.js"></script>
-
+<script src="script.js"></script>
 </body>
 </html>
