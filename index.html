@@ -3,31 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blue Letter</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>For Yayang</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="scene">
-  <div class="envelope" id="envelope">
+  <!-- MUSIC (hidden) -->
+  <iframe
+    id="musicPlayer"
+    src="https://www.youtube.com/embed/y-nxQMx_38s?enablejsapi=1"
+    allow="autoplay"
+    style="display:none;">
+  </iframe>
+
+  <!-- HEARTS -->
+  <div id="hearts"></div>
+
+  <!-- ENVELOPE -->
+  <div id="envelope">
     <div class="flap"></div>
-    <div class="body"></div>
-    <div class="letter" id="letter">
+    <div class="paper">
       <pre id="output"></pre>
     </div>
   </div>
-</div>
 
-<div id="hearts"></div>
-
-<iframe
-  id="musicPlayer"
-  width="0"
-  height="0"
-  src="https://www.youtube.com/embed/y-nxQMx_38s?enablejsapi=1"
-  allow="autoplay"
-></iframe>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
