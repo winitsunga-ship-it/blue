@@ -20,36 +20,31 @@ Always,
 `;
 
 
-const envelope = document.getElementById("envelope");
-const output = document.getElementById("output");
-const iframe = document.getElementById("musicPlayer");
-const heartsLayer = document.getElementById("hearts");
+document.addEventListener("DOMContentLoaded", () => {
+  const envelope = document.querySelector(".envelope");
+  const letter = document.querySelector(".letter");
+  const openBtn = document.querySelector(".open-btn");
+  const music = document.getElementById("bg-music");
 
-let hasOpened = false;
+  let isOpen = false;
 
-envelope.addEventListener("click", () => {
-  if (hasOpened) return;
-  hasOpened = true;
+  openBtn.addEventListener("click", () => {
+    if (isOpen) return;
+    isOpen = true;
 
-  // Open envelope animation
-  envelope.classList.add("open");
+    envelope.classList.add("open");
+    letter.classList.add("show");
 
-  // Start music (autoplay allowed because user clicked)
-  iframe.src += "&autoplay=1&loop=1&playlist=y-nxQMx_38s";
-
-  // Floating hearts
-  setInterval(createHeart, 700);
-
-  // Typing effect
-  let index = 0;
-  const typingInterval = setInterval(() => {
-    output.textContent += message[index];
-    index++;
-    if (index >= message.length) {
-      clearInterval(typingInterval);
+    // Play music ONLY after user interaction (required by mobile browsers)
+    if (music) {
+      music.volume = 0.6;
+      music.play().catch(() => {
+        console.log("Autoplay blocked until user interaction.");
+      });
     }
-  }, 38);
+  });
 });
+
 
 
 // ================================
@@ -69,4 +64,5 @@ function createHeart() {
     heart.remove();
   }, 2500);
 }
+
 
