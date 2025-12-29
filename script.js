@@ -6,100 +6,77 @@ const muteBtn = document.getElementById("muteBtn");
 let opened = false;
 let isMuted = false;
 
-// OPEN LETTER
+/* OPEN LETTER */
 openBtn.addEventListener("click", () => {
   if (opened) return;
   opened = true;
 
   envelope.classList.add("open");
 
-  if (music) {
-    music.volume = 0;
-    music.play().catch(() => {});
+  // Music fade-in
+  music.volume = 0;
+  music.play().catch(() => {});
+  let v = 0;
+  const fade = setInterval(() => {
+    v += 0.02;
+    music.volume = Math.min(v, 0.6);
+    if (v >= 0.6) clearInterval(fade);
+  }, 100);
 
-    let volume = 0;
-    const fade = setInterval(() => {
-      volume += 0.02;
-      if (volume >= 0.6) {
-        volume = 0.6;
-        clearInterval(fade);
-      }
-      music.volume = volume;
-    }, 100);
-
-    startHearts();
-    setupBeatDetection();
-  }
+  startBeatSync();
+  spawnHearts();
 });
 
-// MUTE BUTTON
+/* MUTE */
 muteBtn.addEventListener("click", () => {
-  if (!music) return;
-
-  muteBtn.classList.add("switching");
-
-  setTimeout(() => {
-    isMuted = !isMuted;
-    music.muted = isMuted;
-
-    muteBtn.textContent = isMuted ? "🔇" : "💙";
-    muteBtn.classList.toggle("muted", isMuted);
-
-    muteBtn.classList.remove("switching");
-  }, 150);
+  isMuted = !isMuted;
+  music.muted = isMuted;
+  muteBtn.textContent = isMuted ? "🔇" : "💙";
 });
 
-// FLOATING HEARTS
-function startHearts() {
+/* HEART SPAWN */
+function spawnHearts() {
   setInterval(() => {
-    const heart = document.createElement("span");
-    heart.className = "heart";
-    heart.textContent = "💙";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 5000);
-  }, 500);
+    const h = document.createElement("span");
+    h.className = "heart";
+    h.textContent = "💙";
+    h.style.left = Math.random() * window.innerWidth + "px";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 5000);
+  }, 700);
 }
 
-// BEAT DETECTION
-function setupBeatDetection() {
+/* BEAT SYNC */
+function startBeatSync() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
-  const audioCtx = new AudioContext();
-  const source = audioCtx.createMediaElementSource(music);
-  const analyser = audioCtx.createAnalyser();
+  const ctx = new AudioContext();
+  const source = ctx.createMediaElementSource(music);
+  const analyser = ctx.createAnalyser();
 
   analyser.fftSize = 256;
   source.connect(analyser);
-  analyser.connect(audioCtx.destination);
+  analyser.connect(ctx.destination);
 
-  const dataArray = new Uint8Array(analyser.frequencyBinCount);
-  audioCtx.resume();
+  const data = new Uint8Array(analyser.frequencyBinCount);
+  ctx.resume();
 
-  function detectBeat() {
-    analyser.getByteFrequencyData(dataArray);
-
+  function beat() {
+    analyser.getByteFrequencyData(data);
     let bass = 0;
-    for (let i = 0; i < 10; i++) bass += dataArray[i];
+    for (let i = 0; i < 10; i++) bass += data[i];
 
     if (bass > 180) {
       envelope.classList.add("beat");
       muteBtn.classList.add("beat");
+      document.querySelectorAll(".heart").forEach(h => h.classList.add("beat"));
 
       setTimeout(() => {
         envelope.classList.remove("beat");
         muteBtn.classList.remove("beat");
+        document.querySelectorAll(".heart").forEach(h => h.classList.remove("beat"));
       }, 120);
-
-      document.querySelectorAll(".heart").forEach(h => {
-        h.classList.add("beat");
-        setTimeout(() => h.classList.remove("beat"), 120);
-      });
     }
-
-    requestAnimationFrame(detectBeat);
+    requestAnimationFrame(beat);
   }
-
-  detectBeat();
+  beat();
 }
