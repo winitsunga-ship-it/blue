@@ -8,27 +8,33 @@ openBtn.addEventListener("click", () => {
   if (opened) return;
   opened = true;
 
+  // OPEN ENVELOPE
   envelope.classList.add("open");
 
-  // Play music
+  // PLAY MUSIC
   if (music) {
     music.volume = 0.6;
     music.play().catch(() => {});
   }
 
- // Floating blue hearts
-const heartInterval = setInterval(() => {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.textContent = "💙";
+  // FLOATING BLUE HEARTS
+  const heartInterval = setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "💙";
 
-  // Random horizontal position
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = 14 + Math.random() * 18 + "px";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = 14 + Math.random() * 18 + "px";
 
-  document.body.appendChild(heart);
+    document.body.appendChild(heart);
 
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }, 500);
+
+  // STOP HEARTS AFTER 15 SECONDS
   setTimeout(() => {
-    heart.remove();
-  }, 5000);
-}, 500);
+    clearInterval(heartInterval);
+  }, 15000);
+});
