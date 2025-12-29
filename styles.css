@@ -5,81 +5,89 @@
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(#eaf6ff, #dbeeff);
+  background: linear-gradient(#e6f2ff, #cce4ff);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Georgia', serif;
-  overflow: hidden;
+  font-family: Georgia, serif;
+}
+
+/* CENTER */
+.container {
+  text-align: center;
 }
 
 /* ENVELOPE */
 #envelope {
   width: 320px;
   height: 220px;
-  background: #4fa3ff;
-  border-radius: 10px;
   position: relative;
   cursor: pointer;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  perspective: 1000px;
 }
 
-.flap {
+/* PARTS */
+.back {
+  background: #3a8dde;
   position: absolute;
-  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.front {
+  background: #4fa3ff;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  z-index: 3;
+}
+
+.top {
+  position: absolute;
   width: 100%;
   height: 50%;
   background: #6bb6ff;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top;
   transition: transform 1s;
-}
-
-#envelope.open .flap {
-  transform: rotateX(180deg);
+  z-index: 4;
 }
 
 /* PAPER */
 .paper {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  right: 10px;
+  width: 90%;
   height: 0;
-  background: #fff;
+  background: white;
+  left: 5%;
+  bottom: 5%;
   border-radius: 6px;
   overflow-y: auto;
   transition: height 1s;
-  padding: 15px;
+  z-index: 2;
+}
+
+.letter {
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* OPEN STATE */
+#envelope.open .top {
+  transform: rotateX(180deg);
 }
 
 #envelope.open .paper {
-  height: 260px;
+  height: 280px;
 }
 
 /* TEXT */
-#output {
-  white-space: pre-wrap;
+.tap {
+  margin-top: 20px;
+  color: #2c5fa8;
   font-size: 14px;
-  color: #333;
-}
-
-/* HEARTS */
-#hearts {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-}
-
-.heart {
-  position: absolute;
-  font-size: 20px;
-  animation: float 2.5s ease-out forwards;
-}
-
-@keyframes float {
-  to {
-    transform: translateY(-120px);
-    opacity: 0;
-  }
 }
