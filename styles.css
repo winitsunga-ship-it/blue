@@ -75,4 +75,18 @@ button:hover {
     transform: translateY(-140px);
     opacity: 0;
   }
+  #hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
+
+.heart {
+  position: absolute;
+  font-size: 20px;
+  color: #5fa8ff;
+  animation: floatUp 2.5s ease-out forwards;
+}
+}
+
