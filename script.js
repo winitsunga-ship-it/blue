@@ -10,8 +10,24 @@ openBtn.addEventListener("click", () => {
 
   envelope.classList.add("open");
 
-  // Play music (safe for mobile)
+  // Play music
   if (music) {
+    music.volume = 0.6;
     music.play().catch(() => {});
   }
+
+  // Create blue hearts
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "💙";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = 16 + Math.random() * 20 + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 4000);
+  }, 300);
 });
