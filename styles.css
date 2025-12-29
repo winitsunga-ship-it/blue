@@ -209,26 +209,48 @@ body {
   transform: scale(1.6);
 }
 
-/* MUTE HEART BUTTON */
 #muteBtn {
-  margin-top: 12px;
+  margin-bottom: 28px; /* ← THIS fixes the spacing */
+  padding: 10px 16px;
+
   border: none;
-  background: transparent;
-  font-size: 28px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+
+  font-size: 22px;
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  color: #4fa3ff;
+
+  box-shadow:
+    0 8px 20px rgba(79, 163, 255, 0.25),
+    inset 0 0 0 1px rgba(79, 163, 255, 0.25);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
 }
 
 #muteBtn:hover {
-  transform: scale(1.2);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    0 12px 26px rgba(79, 163, 255, 0.35),
+    inset 0 0 0 1px rgba(79, 163, 255, 0.35);
+}
+
+#muteBtn:active {
+  transform: scale(0.95);
 }
 
 #muteBtn.muted {
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 
 }
+
 
 
 
