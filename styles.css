@@ -49,6 +49,7 @@ body {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.15s ease;
 }
 
 /* FLAP */
@@ -183,8 +184,33 @@ body {
   50%  { transform: scale(1.35); }
   100% { transform: scale(1); }
 }
+@keyframes pulseBeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.heart.pulse {
+  animation: pulseBeat 0.3s ease-out;
+}
+
+#envelope.beat {
+  box-shadow: 0 0 35px rgba(79, 163, 255, 0.9);
+}
+
+/* HEART BEAT PULSE */
+.heart.beat {
+  transform: scale(1.6);
+}
 
 
 }
+
 
 
