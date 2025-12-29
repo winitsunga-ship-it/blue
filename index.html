@@ -8,25 +8,26 @@
 </head>
 <body>
 
-  <div class="page">
-    <button id="animateBtn">Open Letter 💌</button>
+<div class="scene">
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="body"></div>
+    <div class="letter" id="letter">
+      <pre id="output"></pre>
+    </div>
+  </div>
+</div>
 
-   <div id="output"></div>
 <div id="hearts"></div>
 
-  </div>
+<iframe
+  id="musicPlayer"
+  width="0"
+  height="0"
+  src="https://www.youtube.com/embed/y-nxQMx_38s?enablejsapi=1"
+  allow="autoplay"
+></iframe>
 
-  <!-- YouTube music (hidden, plays on click) -->
-  <iframe
-    id="musicPlayer"
-    width="0"
-    height="0"
-    src="https://www.youtube.com/embed/y-nxQMx_38s?enablejsapi=1"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-  ></iframe>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
-
