@@ -44,7 +44,7 @@ openBtn.addEventListener("click", () => {
 
     function detectBeat() {
       analyser.getByteFrequencyData(dataArray);
-
+S
       let bass = 0;
       for (let i = 0; i < 10; i++) {
         bass += dataArray[i];
@@ -53,6 +53,10 @@ openBtn.addEventListener("click", () => {
       if (bass > 180) {
         envelope.classList.add("beat");
         setTimeout(() => envelope.classList.remove("beat"), 120);
+
+        muteBtn.classList.add("beat");
+        setTimeout(() => muteBtn.classList.remove("beat"), 120);
+
 
         document.querySelectorAll(".heart").forEach(h => {
           h.classList.add("beat");
@@ -65,15 +69,21 @@ openBtn.addEventListener("click", () => {
 
     detectBeat();
   }
-  muteBtn.addEventListener("click", () => {
+muteBtn.addEventListener("click", () => {
   if (!music) return;
 
-  isMuted = !isMuted;
-  music.muted = isMuted;
+  muteBtn.classList.add("switching");
 
-  muteBtn.textContent = isMuted ? "💙🔇" : "💙🔊";
-  muteBtn.classList.toggle("muted", isMuted);
+  setTimeout(() => {
+    isMuted = !isMuted;
+    music.muted = isMuted;
+
+    muteBtn.textContent = isMuted ? "🔇" : "💙";
+    muteBtn.classList.toggle("muted", isMuted);
+
+    muteBtn.classList.remove("switching");
+  }, 150);
 });
 
-});
+
 
