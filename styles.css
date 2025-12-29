@@ -26,12 +26,19 @@ body {
   margin-bottom: 36px;
   border: none;
   border-radius: 30px;
-  background: #4fa3ff;
+  background: linear-gradient(135deg, #4fa3ff, #6bb6ff);
   color: white;
   font-size: 15px;
   cursor: pointer;
   box-shadow: 0 6px 16px rgba(79, 163, 255, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+#openBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(79,163,255,0.45);
+}
+
 
 /* ENVELOPE */
 #envelope {
@@ -64,7 +71,10 @@ body {
   left: 12px;
   right: 12px;
   height: 0;
-  background: white;
+  background: linear-gradient(#ffffff, #f6f9ff);
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,0.03),
+    0 10px 25px rgba(79,163,255,0.25);
   border-radius: 10px;
   overflow-y: auto;
   transition: height 0.9s ease;
@@ -78,11 +88,19 @@ body {
   line-height: 1.8;
   white-space: pre-wrap;
   color: #333;
+  font-family: 'Homemade Apple', cursive;
 }
 
 /* OPEN STATE */
 #envelope.open #flap {
   transform: rotateX(180deg);
+  animation: popOpen 0.6s ease;
+}
+
+@keyframes popOpen {
+  0% { transform: scale(0.95); }
+  60% { transform: scale(1.02); }
+  100% { transform: scale(1); }
 }
 
 #envelope.open #paper {
@@ -133,4 +151,28 @@ body {
     transform: translateY(-120vh) scale(1.6);
     opacity: 0;
   }
+  
+.sparkle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkleFloat 4s linear forwards;
 }
+
+@keyframes sparkleFloat {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-120vh) scale(0.3);
+    opacity: 0;
+  }
+}
+
+
+}
+
