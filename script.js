@@ -24,27 +24,36 @@ Wyn
 const output = document.getElementById("output");
 const button = document.getElementById("animateBtn");
 const iframe = document.getElementById("musicPlayer");
+const heartsLayer = document.getElementById("hearts");
 
 let started = false;
+let heartInterval;
 
 button.onclick = () => {
   if (started) return;
   started = true;
 
+  // hide button
   button.style.display = "none";
-  output.textContent = "";
 
-  // Start music (user interaction allows autoplay)
+  // start music
   iframe.src += "&autoplay=1&loop=1&playlist=y-nxQMx_38s";
 
+  // start floating hearts
+  heartInterval = setInterval(spawnHeart, 700);
+
+  // type letter
+  output.textContent = "";
   let i = 0;
-  const typingSpeed = 38; // emotional pacing
+  const typingSpeed = 38;
 
   const typing = setInterval(() => {
     output.textContent += message[i];
-    spawnHeart();
     i++;
-    if (i >= message.length) clearInterval(typing);
+    if (i >= message.length) {
+      clearInterval(typing);
+      clearInterval(heartInterval); // stop hearts after letter ends (optional)
+    }
   }, typingSpeed);
 };
 
@@ -52,8 +61,11 @@ function spawnHeart() {
   const heart = document.createElement("div");
   heart.className = "heart";
   heart.textContent = "💙";
-  heart.style.left = Math.random() * 90 + "%";
-  output.appendChild(heart);
 
-  setTimeout(() => heart.remove(), 2000);
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.bottom = "-20px";
+
+  heartsLayer.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 2500);
 }
