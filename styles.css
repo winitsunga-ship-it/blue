@@ -209,8 +209,27 @@ body {
   transform: scale(1.6);
 }
 
+/* MUTE HEART BUTTON */
+#muteBtn {
+  margin-top: 12px;
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+#muteBtn:hover {
+  transform: scale(1.2);
+}
+
+#muteBtn.muted {
+  opacity: 0.6;
+}
+
 
 }
+
 
 
 
