@@ -3,35 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For Yayang</title>
-
-  <link rel="stylesheet" href="style.css">
+  <title>A Letter</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- MUSIC (hidden) -->
-  <iframe
-    id="musicPlayer"
-    src="https://www.youtube.com/embed/y-nxQMx_38s?enablejsapi=1"
-    allow="autoplay"
-    style="display:none;">
-  </iframe>
+<!-- MUSIC (hidden, starts on open) -->
+<iframe
+  id="music"
+  src="https://www.youtube.com/embed/y-nxQMx_38s?enablejsapi=1&mute=1"
+  allow="autoplay"
+  style="display:none">
+</iframe>
 
-  <!-- HEARTS -->
-  <div id="hearts"></div>
-
-  <!-- ENVELOPE -->
+<!-- ENVELOPE -->
+<div class="container">
   <div id="envelope">
-    <div class="flap"></div>
+    <div class="back"></div>
     <div class="paper">
-      <pre id="output"></pre>
+      <div class="letter">
+        <h2>Dear You,</h2>
+        <p>
+This is where your long message goes.
+
+You can write as much as you want.
+It scrolls automatically on mobile.
+
+Write feelings.
+Write poetry.
+Write everything.
+        </p>
+        <p>— From Me</p>
+      </div>
     </div>
+    <div class="front"></div>
+    <div class="top"></div>
   </div>
 
+  <p class="tap">Tap the envelope</p>
+</div>
+
 <script src="script.js"></script>
-
-
 </body>
 </html>
-
-
