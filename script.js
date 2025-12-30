@@ -2,18 +2,18 @@ const openBtn = document.getElementById("openBtn");
 const envelope = document.getElementById("envelope");
 const music = document.getElementById("bg-music");
 const muteBtn = document.getElementById("muteBtn");
+const closeBtn = document.getElementById("closeBtn");
 
 let opened = false;
 let isMuted = false;
 
-/* OPEN LETTER */
+/* OPEN */
 openBtn.addEventListener("click", () => {
   if (opened) return;
   opened = true;
 
   envelope.classList.add("open");
 
-  // Music fade-in
   music.volume = 0;
   music.play().catch(() => {});
   let v = 0;
@@ -23,8 +23,18 @@ openBtn.addEventListener("click", () => {
     if (v >= 0.6) clearInterval(fade);
   }, 100);
 
-  startBeatSync();
   spawnHearts();
+  startBeatSync();
+});
+
+/* CLOSE */
+closeBtn.addEventListener("click", () => {
+  envelope.classList.add("closing");
+
+  setTimeout(() => {
+    envelope.classList.remove("open", "closing");
+    opened = false;
+  }, 600);
 });
 
 /* MUTE */
@@ -34,7 +44,7 @@ muteBtn.addEventListener("click", () => {
   muteBtn.textContent = isMuted ? "🔇" : "💙";
 });
 
-/* HEART SPAWN */
+/* HEARTS */
 function spawnHearts() {
   setInterval(() => {
     const h = document.createElement("span");
@@ -50,11 +60,11 @@ function spawnHearts() {
 function startBeatSync() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
   const ctx = new AudioContext();
-  const source = ctx.createMediaElementSource(music);
+  const src = ctx.createMediaElementSource(music);
   const analyser = ctx.createAnalyser();
 
   analyser.fftSize = 256;
-  source.connect(analyser);
+  src.connect(analyser);
   analyser.connect(ctx.destination);
 
   const data = new Uint8Array(analyser.frequencyBinCount);
